@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>7 Tage Inzidenz</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+    <div class="mypanel"></div>
+
+    <script>
+    $.getJSON('https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_Landkreisdaten/FeatureServer/0/query?where=1=1&outFields=GEN,cases7_per_100k&geometry=8.86,50.23&geometryType=esriGeometryPoint&inSR=4326&spatialRel=esriSpatialRelWithin&returnGeometry=false&outSR=4326&f=json', function(data) {
+        
+        var text = `<center><h2 style="font-family:verdana">7 Tage Inzidenz<br><br>
+                    ${data.features[0].attributes.GEN}<br>
+                    ${data.features[0].attributes.cases7_per_100k.toFixed(1)}<br></h2></center>`
+                    
+        
+        $(".mypanel").html(text);
+    });
+    </script>
+    
+</body>
+</html>
